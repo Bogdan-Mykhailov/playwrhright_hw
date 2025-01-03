@@ -30,4 +30,14 @@ test.describe('Epam', () => {
     await epamPage.footer.scrollToBottom();
     await epamPage.footer.checkPoliciesList();
   })
+
+  test('Check that allow to switch location list by region', async ({page, epamPage}) => {
+    await epamPage.open();
+    expect(page.url()).toContain(await epamPage.getPageUrl());
+    await epamPage.locations.verifyLocationSection();
+    await epamPage.locations.verifyRegionLinks();
+    await epamPage.locations.switchToEmeaRegion();
+    await epamPage.locations.switchToApacRegion();
+    await epamPage.locations.switchToAmericaRegion();
+  })
 })
