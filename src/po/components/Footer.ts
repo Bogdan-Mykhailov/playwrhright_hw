@@ -1,16 +1,10 @@
 import BaseComponent from "../base/BaseComponent";
-import {Page, expect} from "@playwright/test";
+import {Page, Locator} from "@playwright/test";
+import { Policies } from "../../data/types";
 
 export default class Footer extends BaseComponent {
-    private readonly policiesWrapper = this.page.locator('//div[@class="policies-links-wrapper"]');
-    private readonly leftPoliciesList = this.policiesWrapper.locator('//ul[contains(@class, "policies-left")]');
-    private readonly rightPoliciesList = this.policiesWrapper.locator('//ul[contains(@class, "policies-right")]');
-    private readonly investorsPolicy = this.leftPoliciesList.locator('//a[contains(text(), "INVESTORS")]');
-    private readonly cookiePolicy = this.leftPoliciesList.locator('//a[contains(text(), "COOKIE POLICY")]');
-    private readonly openSourcePolicy = this.leftPoliciesList.locator('//a[contains(text(), "OPEN SOURCE")]');
-    private readonly applicantPrivacyNotice = this.rightPoliciesList.locator('//a[contains(text(), "APPLICANT PRIVACY NOTICE")]');
-    private readonly privacyPolicy = this.leftPoliciesList.locator('//a[contains(text(), "PRIVACY POLICY")]');
-    private readonly webAccessibility = this.rightPoliciesList.locator('//a[contains(text(), "WEB ACCESSIBILITY")]');
+    private readonly policyItem = (policy: Policies) =>
+        this.page.locator(`//a[contains(text(), "${policy}")]`);
 
     constructor(page: Page) {
         super(page);
@@ -22,12 +16,7 @@ export default class Footer extends BaseComponent {
         });
     }
 
-    public async checkPoliciesList(): Promise<void> {
-        await expect(this.investorsPolicy).toBeVisible();
-        await expect(this.cookiePolicy).toBeVisible();
-        await expect(this.openSourcePolicy).toBeVisible();
-        await expect(this.applicantPrivacyNotice).toBeVisible();
-        await expect(this.privacyPolicy).toBeVisible();
-        await expect(this.webAccessibility).toBeVisible();
+    public async checkPolicy(policy: Policies): Promise<Locator> {
+        return this.policyItem(policy);
     }
 }

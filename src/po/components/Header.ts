@@ -4,7 +4,8 @@ import {Page} from "@playwright/test";
 export default class Header extends BaseComponent{
     private readonly themeSwitcher = this.page.locator('//div[@class="header__vaulting-container"] //div[@class="theme-switcher"]');
     private readonly locationSelector = this.page.locator('//button[@class="location-selector__button"]');
-    private readonly currentLocation = this.page.locator('//ul[@class="location-selector__list"] //a[contains(text(), "Україна")]');
+    private readonly locationOption = (locationName: string) =>
+        this.page.locator(`//ul[@class="location-selector__list"]//a[contains(text(), "${locationName}")]`);
 
     constructor(page: Page) {
         super(page);
@@ -20,14 +21,19 @@ export default class Header extends BaseComponent{
         });
     }
 
-    public async changeLanguage(): Promise<void> {
+    public async setLanguageTo(locationName: string): Promise<void> {
         await this.locationSelector.click();
-        await this.currentLocation.waitFor({ state: 'visible' });
-        await this.currentLocation.click();
+        const selectedOption = this.locationOption(locationName);
+        await selectedOption.click();
     }
 
-    public async verifyCorrectLanguage(): Promise<string> {
-        return await this.page.getAttribute('html', 'lang');    }
+    public async getCurrentLanguage(): Promise<string> {
+        return await this.page.getAttribute('html', 'lang');
+    }
+
+    public async getUpdatedLocationSelectorName(): Promise<string> {
+        return await this.locationSelector.textContent()
+    }
 }
 
 
