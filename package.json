@@ -11,8 +11,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "axios": "^1.7.9",
     "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.3"
+    "@reportportal/agent-js-playwright": "^5.1.11",
+    "@types/node": "^22.10.3",
+    "axios": "^1.7.9"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
   }
 }
