@@ -5,9 +5,9 @@
   "scripts": {
     "test": "npx playwright test",
     "report": "npx playwright show-report",
-    "precommit": "run-s format:fix lint",
     "format:fix": "pretty-quick --staged",
-    "lint": "npx eslint \"src/**/*.ts\" "
+    "lint": "npx eslint \"src/**/*.ts\" ",
+    "pre-commit": "run-s format:fix lint"
   },
   "keywords": [],
   "author": "",
@@ -32,5 +32,6 @@
     "pretty-quick": "^4.0.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.1"
-  }
+  },
+  "husky": {}
 }
