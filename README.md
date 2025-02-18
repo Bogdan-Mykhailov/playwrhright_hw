@@ -1,6 +1,6 @@
 # Playwright Commands
 
-_____________________________________
+---
 
 ## Running Playwright Tests with a Specific Tag
 
@@ -11,6 +11,7 @@ npx playwright test --grep "(?=.*@epam)"
 ```
 
 #### Explanation:
+
 - `npx playwright test`: Runs Playwright tests.
 - `--grep "(?=.*@epam)"`: Filters the tests to only include those containing the `@epam` tag.
 
@@ -25,6 +26,7 @@ npx playwright test --grep "(?=.*@epam-1)"
 ```
 
 #### Explanation:
+
 - `--grep "(?=.*@epam-1)"`: Filters the tests to only include those tagged with `@epam-1`. You can replace `1` with any number (e.g., `@epam-2`, `@epam-3`, etc.) depending on which set of tests you want to run.
 
 ---
@@ -38,6 +40,7 @@ npx playwright test --grep "(?=.*@epam)" --ui
 ```
 
 #### Explanation:
+
 - `--ui`: Opens the Playwright **UI mode** for visual test execution and debugging.
 - `--grep "(?=.*@epam)"`: Filters tests with the `@epam` tag.
 
@@ -52,6 +55,7 @@ npx playwright test --grep "(?=.*@epam)" --debug
 ```
 
 #### Explanation:
+
 - `--debug`: Launches Playwright tests with debugging enabled (Node.js inspector).
 - `--grep "(?=.*@epam)"`: Filters tests with the `@epam` tag.
 
@@ -66,6 +70,7 @@ npx playwright test --grep "(?=.*@epam)" --ui --debug
 ```
 
 #### Explanation:
+
 - `--ui`: Opens Playwright UI mode.
 - `--debug`: Enables debug mode (Node.js inspector).
 - `--grep "(?=.*@epam)"`: Filters tests by the `@epam` tag.
@@ -81,6 +86,7 @@ npx playwright test --grep "(?=.*@epam)" --headed
 ```
 
 #### Explanation:
+
 - `--headed`: Launches the browser **with UI** (non-headless mode).
 - `--grep "(?=.*@epam)"`: Filters tests with the `@epam` tag.
 

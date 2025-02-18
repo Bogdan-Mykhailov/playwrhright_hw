@@ -4,19 +4,33 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "precommit": "run-s format:fix lint",
+    "format:fix": "pretty-quick --staged",
+    "lint": "npx eslint \"src/**/*.ts\" "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.20.0",
     "@playwright/test": "^1.49.1",
     "@reportportal/agent-js-playwright": "^5.1.11",
     "@types/node": "^22.10.3",
-    "axios": "^1.7.9"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.7"
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.5.1",
+    "pretty-quick": "^4.0.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
   }
 }

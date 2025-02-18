@@ -1,4 +1,4 @@
-import {defineConfig, devices} from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 import "dotenv/config";
 
 const rpConfig = {
@@ -16,14 +16,14 @@ const rpConfig = {
       value: "anotherAttrbiuteValue",
     },
   ],
-  mode: 'DEFAULT',
-}
+  mode: "DEFAULT",
+};
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './src/tests',
+  testDir: "./src/tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -34,8 +34,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['@reportportal/agent-js-playwright', rpConfig],
-    ['html', {open: 'always'}]
+    ["@reportportal/agent-js-playwright", rpConfig],
+    ["html", { open: "always" }],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -43,27 +43,26 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
     video: {
-      mode: 'retain-on-failure',
+      mode: "retain-on-failure",
       size: {
         width: 1280,
         height: 1024,
-      }
-    }
+      },
+    },
   },
   expect: {
     timeout: 60000,
   },
   timeout: 70000,
 
-
   /* Configure projects for major browsers */
   projects: [
     {
       use: {
-        ...devices['Desktop Chrome'],
-        channel: 'chrome'
+        ...devices["Desktop Chrome"],
+        channel: "chrome",
       },
     },
 
