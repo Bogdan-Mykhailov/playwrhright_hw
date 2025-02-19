@@ -7,8 +7,8 @@
     "report": "npx playwright show-report",
     "format:fix": "pretty-quick --staged",
     "lint": "npx eslint \"src/**/*.ts\" ",
-    "prepare": "husky",
-    "precommit": "run-s format:fix lint"
+    "precommit": "run-s format:fix lint",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
