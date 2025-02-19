@@ -6,7 +6,7 @@
     "test": "npx playwright test",
     "report": "npx playwright show-report",
     "format:fix": "pretty-quick --staged",
-    "lint": "npx eslint \"src/**/*.ts\" ",
+    "lint": "npx eslint \"src/**/*.ts\"",
     "precommit": "run-s format:fix lint",
     "prepare": "husky"
   },
