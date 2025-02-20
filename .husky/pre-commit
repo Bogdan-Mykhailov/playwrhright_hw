@@ -1,1 +1,2 @@
-npm run precommit
+npx run precommit
+npx run lint
