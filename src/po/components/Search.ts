@@ -2,7 +2,7 @@ import BaseComponent from "../base/BaseComponent";
 import { Page } from "@playwright/test";
 
 export default class Search extends BaseComponent {
-  private readonly searchPanel = this.page.locator(
+  public readonly searchPanel = this.page.locator(
     '//div[@class="header-search__panel"]',
   );
   private readonly searchField = this.searchPanel.locator(

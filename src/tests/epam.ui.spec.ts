@@ -7,6 +7,7 @@ test.describe("UI", { tag: "@ui" }, () => {
     await test.step("Open EPAM.com", async () => {
       await epamPage.open();
       await expect(page).toHaveURL(epamPage.getPageUrl());
+      await epamPage.pressAcceptAllCookiesButton();
     });
 
     await test.step("Compare the title", async () => {
@@ -21,6 +22,7 @@ test.describe("UI", { tag: "@ui" }, () => {
     await test.step("Open EPAM.com", async () => {
       await epamPage.open();
       await expect(page).toHaveURL(epamPage.getPageUrl());
+      await epamPage.pressAcceptAllCookiesButton();
     });
 
     await test.step("Switch the toggle for theme to opposite state", async () => {
@@ -40,6 +42,7 @@ test.describe("UI", { tag: "@ui" }, () => {
     await test.step("Open EPAM.com", async () => {
       await epamPage.open();
       await expect(page).toHaveURL(epamPage.getPageUrl());
+      await epamPage.pressAcceptAllCookiesButton();
     });
 
     await test.step("Switch the site's language to Ukraine", async () => {
@@ -57,6 +60,7 @@ test.describe("UI", { tag: "@ui" }, () => {
     await test.step("Open EPAM.com", async () => {
       await epamPage.open();
       await expect(page).toHaveURL(epamPage.getPageUrl());
+      await epamPage.pressAcceptAllCookiesButton();
     });
 
     await test.step("Go to the bottom of the page", async () => {
@@ -80,6 +84,7 @@ test.describe("UI", { tag: "@ui" }, () => {
     await test.step("Open EPAM.com", async () => {
       await epamPage.open();
       await expect(page).toHaveURL(epamPage.getPageUrl());
+      await epamPage.pressAcceptAllCookiesButton();
     });
 
     await test.step("Go to Our Locations part", async () => {
@@ -94,6 +99,30 @@ test.describe("UI", { tag: "@ui" }, () => {
         await expect(regionLink).toBeVisible();
         await regionLink.click();
         await expect(regionLink).toHaveClass(/active/);
+      }
+    });
+  });
+
+  test("[ @ui-6 ] Check the search function", async ({ page, epamPage }) => {
+    await test.step("Open EPAM.com", async () => {
+      await epamPage.open();
+      await expect(page).toHaveURL(epamPage.getPageUrl());
+      await epamPage.pressAcceptAllCookiesButton();
+    });
+
+    await test.step('Open search field and submit request "AI"', async () => {
+      await epamPage.header.clickOnSearchIcon();
+      await expect(epamPage.header.searchPanel).toBeVisible();
+      await epamPage.header.pasteDataAndPressSearchButton(
+        credentials.searchText,
+      );
+    });
+
+    await test.step("Check that site should show the search results", async () => {
+      const elements = await epamPage.header.searchResult.all();
+
+      for (const element of elements) {
+        await expect(element).toContainText(credentials.searchText);
       }
     });
   });

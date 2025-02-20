@@ -12,6 +12,21 @@ export default class Header extends BaseComponent {
     this.page.locator(
       `//ul[@class="location-selector__list"]//a[contains(text(), "${locationName}")]`,
     );
+  private readonly searchIcon = this.page.locator(
+    '//button[@class="header-search__button header__icon"]',
+  );
+  public readonly searchPanel = this.page.locator(
+    '//div[@class="header-search__panel"]',
+  );
+  private readonly searchField = this.page.locator(
+    '//input[@id="new_form_search"]',
+  );
+  private readonly findButton = this.page.locator(
+    '//span[contains(text(), "Find")]/ancestor::button[contains(@class, "custom-search-button")]',
+  );
+  public readonly searchResult = this.page.locator(
+    `//div[@class="search-results__items"]`,
+  );
 
   constructor(page: Page) {
     super(page);
@@ -39,5 +54,14 @@ export default class Header extends BaseComponent {
 
   public async getUpdatedLocationSelectorName(): Promise<string> {
     return await this.locationSelector.textContent();
+  }
+
+  public async clickOnSearchIcon(): Promise<void> {
+    await this.searchIcon.click();
+  }
+
+  public async pasteDataAndPressSearchButton(text: string): Promise<void> {
+    await this.searchField.fill(text);
+    await this.findButton.click();
   }
 }

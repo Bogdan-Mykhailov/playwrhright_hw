@@ -10,11 +10,21 @@ export default class EpamPage extends BasePage {
   public footer: Footer = new Footer(this.page);
   public locations: Locations = new Locations(this.page);
 
+  private acceptAllCookies = this.page.locator(
+    '//button[@id="onetrust-accept-btn-handler"]',
+  );
+
   constructor(page: Page) {
     super(page, "Epam Page", Path.HOME);
   }
 
   public async getTitle() {
     return await this.page.title();
+  }
+
+  public async pressAcceptAllCookiesButton(): Promise<void> {
+    if (await this.acceptAllCookies.isVisible()) {
+      await this.acceptAllCookies.click();
+    }
   }
 }
