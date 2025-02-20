@@ -24,9 +24,12 @@ test.describe("UI", { tag: "@ui" }, () => {
     });
 
     await test.step("Switch the toggle for theme to opposite state", async () => {
+      console.log("sdfsdf");
       const initTheme = await epamPage.header.getCurrentTheme();
+
       await epamPage.header.clickOnThemeSwitcher();
       const newTheme = await epamPage.header.getCurrentTheme();
+
       expect(initTheme).not.toBe(newTheme);
     });
   });
