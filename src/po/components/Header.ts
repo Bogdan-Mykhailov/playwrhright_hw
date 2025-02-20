@@ -27,6 +27,9 @@ export default class Header extends BaseComponent {
   public readonly searchResult = this.page.locator(
     `//div[@class="search-results__items"]`,
   );
+  public readonly companyLogo = this.page.locator(
+    '//div[@class="header__logo-container"]',
+  );
 
   constructor(page: Page) {
     super(page);
@@ -63,5 +66,9 @@ export default class Header extends BaseComponent {
   public async pasteDataAndPressSearchButton(text: string): Promise<void> {
     await this.searchField.fill(text);
     await this.findButton.click();
+  }
+
+  public async clickLogo(): Promise<void> {
+    await this.companyLogo.click();
   }
 }

@@ -142,4 +142,23 @@ test.describe("UI", { tag: "@ui" }, () => {
       await contactPage.checkValidationErrors();
     });
   });
+
+  test("[ @ui-8 ] Check that the Company logo on the header leads to the main page", async ({
+    page,
+    contactPage,
+  }) => {
+    await test.step("Open https://www.epam.com/about", async () => {
+      await contactPage.open();
+      await expect(page).toHaveURL(contactPage.getPageUrl());
+      await contactPage.pressAcceptAllCookiesButton();
+    });
+
+    await test.step("Click on the company logo in the header", async () => {
+      await contactPage.header.clickLogo();
+    });
+
+    await test.step("Verify redirection to the main page", async () => {
+      await expect(page).toHaveURL("https://www.epam.com/");
+    });
+  });
 });
