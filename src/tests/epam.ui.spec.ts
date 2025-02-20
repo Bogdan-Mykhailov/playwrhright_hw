@@ -126,4 +126,20 @@ test.describe("UI", { tag: "@ui" }, () => {
       }
     });
   });
+
+  test("[ @ui-7 ] Check form's fields validation", async ({
+    page,
+    contactPage,
+  }) => {
+    await test.step("Open https://www.epam.com/about/who-we-are/contact", async () => {
+      await contactPage.open();
+      await expect(page).toHaveURL(contactPage.getPageUrl());
+      await contactPage.pressAcceptAllCookiesButton();
+    });
+
+    await test.step("Check validation for required fields", async () => {
+      await contactPage.clickSubmitButton();
+      await contactPage.checkValidationErrors();
+    });
+  });
 });

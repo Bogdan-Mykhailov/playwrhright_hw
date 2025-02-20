@@ -42,7 +42,7 @@ Open EPAM.com
 Open search field and submit request "AI"
 Expected: the site should show the search result
 
-7) Chack form's fields validation
+7) Check form's fields validation
 Steps
 Open https://www.epam.com/about/who-we-are/contact
 Check validation for required fields
