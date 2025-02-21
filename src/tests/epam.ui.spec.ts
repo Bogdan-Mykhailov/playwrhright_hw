@@ -145,20 +145,44 @@ test.describe("UI", { tag: "@ui" }, () => {
 
   test("[ @ui-8 ] Check that the Company logo on the header leads to the main page", async ({
     page,
-    contactPage,
+    aboutPage,
   }) => {
     await test.step("Open https://www.epam.com/about", async () => {
-      await contactPage.open();
-      await expect(page).toHaveURL(contactPage.getPageUrl());
-      await contactPage.pressAcceptAllCookiesButton();
+      await aboutPage.open();
+      await expect(page).toHaveURL(aboutPage.getPageUrl());
+      await aboutPage.pressAcceptAllCookiesButton();
     });
 
     await test.step("Click on the company logo in the header", async () => {
-      await contactPage.header.clickLogo();
+      await aboutPage.header.clickLogo();
     });
 
     await test.step("Verify redirection to the main page", async () => {
       await expect(page).toHaveURL("https://www.epam.com/");
     });
+  });
+
+  test("[ @ui-9 ] Check that allows to download report", async ({
+    page,
+    aboutPage,
+  }) => {
+    await test.step("Open https://www.epam.com/about", async () => {
+      await aboutPage.open();
+      await expect(page).toHaveURL(aboutPage.getPageUrl());
+      await aboutPage.pressAcceptAllCookiesButton();
+    });
+
+    await test.step(
+      'Download EPAM Corporate Overview 2024 report on "EPAM at\n' +
+        'a Glance" block',
+      async () => {
+        const download = await aboutPage.downloadReport();
+        expect(await download.path()).toBeTruthy();
+
+        const actualFileName = download.suggestedFilename();
+        expect(actualFileName).toBe(credentials.downloadedFilename);
+        expect(actualFileName.endsWith(".pdf")).toBe(true);
+      },
+    );
   });
 });
