@@ -21,7 +21,7 @@
 To run Playwright tests tagged with `@ui`, use the following command:
 
 ```bash
-npx playwright test --grep "(?=.*@ui)"
+    npx playwright test --grep "(?=.*@ui)"
 ```
 
 #### Explanation:
@@ -36,7 +36,7 @@ npx playwright test --grep "(?=.*@ui)"
 To run a specific test tagged with `@api-1`, replace `1` with the desired tag number (e.g., `@api-2`, `@api-3`, etc.):
 
 ```bash
-npx playwright test --grep "(?=.*@api-1)"
+    npx playwright test --grep "(?=.*@api-1)"
 ```
 
 #### Explanation:
@@ -50,7 +50,7 @@ npx playwright test --grep "(?=.*@api-1)"
 To run Playwright tests with the **UI Test Runner**, use:
 
 ```bash
-npx playwright test --ui
+    npx playwright test --ui
 ```
 
 #### Explanation:
@@ -64,7 +64,7 @@ npx playwright test --ui
 To run Playwright tests in **debug mode**, use:
 
 ```bash
-npx playwright test --debug
+    npx playwright test --debug
 ```
 
 #### Explanation:
@@ -78,7 +78,7 @@ npx playwright test --debug
 To run Playwright tests with the `@ui` tag using **both UI mode and debug mode**:
 
 ```bash
-npx playwright test --grep "(?=.*@ui)" --ui --debug
+    npx playwright test --grep "(?=.*@ui)" --ui --debug
 ```
 
 #### Explanation:
@@ -94,7 +94,7 @@ npx playwright test --grep "(?=.*@ui)" --ui --debug
 To run Playwright tests **in a visible browser window** (headed mode) with the `@ui` tag:
 
 ```bash
-npx playwright test --grep "(?=.*@ui)" --headed
+    npx playwright test --grep "(?=.*@ui)" --headed
 ```
 
 #### Explanation:
